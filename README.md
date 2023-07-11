@@ -6,6 +6,14 @@ Zoom API Helper is a Node.js package that provides a helper for simplifies manag
 
 - Create OAuth Zoom [click here](https://developers.zoom.us/docs/integrations/create/)
 
+## Installation
+
+To install the package, you can use npm:
+
+```bash
+npm install zoom-api-helper
+```
+
 ## The Basic
 ```js
 import ZoomtHelper from "zoom-api-helper";
