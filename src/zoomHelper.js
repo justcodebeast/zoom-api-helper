@@ -5,7 +5,7 @@ import timezone from "dayjs/plugin/timezone.js";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-export default class ZoomtHelper {
+export default class ZoomHelper {
   #zoomAccountId
   #zoomAccessToken
 

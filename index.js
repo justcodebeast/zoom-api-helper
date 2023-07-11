@@ -1,3 +1,3 @@
-import ZoomtHelper from "./src/zoomHelper.js";
+import ZoomHelper from "./src/zoomHelper.js";
 
-export default ZoomtHelper;
+export default ZoomHelper;
