@@ -15,6 +15,8 @@ npm install zoom-api-helper
 ```
 
 ## The Basic
+
+### Create Meeting
 ```js
 import ZoomtHelper from "zoom-api-helper";
 
@@ -38,4 +40,26 @@ let meetingJoinUrl = zoomResponse.join_url;
 console.log(meetingId, "=> meeting id");
 console.log(meetingPassword, "=> meeting pass");
 console.log(meetingJoinUrl, "=> meeting url");
+```
+
+### Get Meetings
+```js
+const zoomResponse = await zoom.getMeetings(userId)
+
+console.log(zoomResponse, ">>> response list meeting");
+```
+or we can add some params
+```js
+let params = {
+  page_size: 50, 
+  page_number: 1,
+  next_page_token:  "",
+  from:  "",
+  to:  "" 
+}
+// we can see the detail params here: https://developers.zoom.us/docs/api/rest/reference/zoom-api/methods/#operation/meetings
+
+const zoomResponse = await zoom.getMeetings(userId)
+
+console.log(zoomResponse, ">>> response list meeting");
 ```
