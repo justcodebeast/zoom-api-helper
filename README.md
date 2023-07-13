@@ -59,7 +59,7 @@ let params = {
 }
 // we can see the detail params here: https://developers.zoom.us/docs/api/rest/reference/zoom-api/methods/#operation/meetings
 
-const zoomResponse = await zoom.getMeetings(userId)
+const zoomResponse = await zoom.getMeetings(userId, params)
 
 console.log(zoomResponse, ">>> response list meeting");
 ```
@@ -73,7 +73,25 @@ console.log(zoomResponse, ">>> response meeting");
 
 ### Update Meeting 
 ```js
-const zoomResponse = await zoom.updateMeeting("<Meetind-ID>", "<Topic>", "<Duratoin>", "<Start-Time>",)
+const zoomResponse = await zoom.updateMeeting("<Meetind-ID>", "<Topic>", "<Duratoin>", "<Start-Time>")
 
 console.log(zoomResponse, ">>> response meeting");
+```
+
+### Delete Meeting
+```js
+const zoomResponse = await zoom.deleteMeeting("<Meetind-ID>")
+
+console.log(zoomResponse, ">>> response meeting");
+```
+
+### Get Meeting Participant 
+```js
+const zoomResponse = await zoom.getMeetingParticipants("<Meetind-ID>")
+
+console.log(zoomResponse, ">>> response meeting");
+```
+or we can add some params
+```js
+const zoomResponse = await zoom.getMeetingParticipants("<Meetind-ID>", "<Page-Size>", "<Next-Page-Token>")
 ```

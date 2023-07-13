@@ -114,11 +114,9 @@ export default class ZoomHelper {
     }
   }
 
-  async updateMeeting(meetingId, topic, duration, startTime) {
+  async updateMeeting(meetingId, topic, duration, start_time ) {
     try {
       const token = await this.generateToken();
-      
-      const startTimeFormatted = this.formatDate(startTime)
 
       const { data } = await axios({
         url: `${this.zoomBaseUrl}/meetings/${meetingId}`,
@@ -129,8 +127,8 @@ export default class ZoomHelper {
         data: {
           topic,
           agenda: topic,
-          duration: duration ? duration : 60,
-          start_time: startTimeFormatted,
+          duration,
+          start_time,
           timezone: this.timezone,
         },
       });
@@ -147,4 +145,47 @@ export default class ZoomHelper {
               .format("YYYY-MM-DDThh:mm:ss")
   }
 
+  async deleteMeeting(meetingId) {
+    try {
+      const token = await this.generateToken();
+
+      const { data } = await axios({
+        url: `${this.zoomBaseUrl}/meetings/${meetingId}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async getMeetingParticipants(
+    meetingId,
+    page_size = 300,
+    next_page_token = "",
+  ) {
+    try {
+      const token = await this.generateToken();
+
+      const { data } = await axios({
+        url: `${this.zoomBaseUrl}/report/meetings/${meetingId}/participants`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+        },
+        params: {
+          page_size,
+          next_page_token,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
