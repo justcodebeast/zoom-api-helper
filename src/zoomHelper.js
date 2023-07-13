@@ -38,9 +38,7 @@ export default class ZoomHelper {
     try {
       const token = await this.generateToken();
 
-      const startTimeFormatted = dayjs
-                                    .tz(startTime, this.timezone)
-                                    .format("YYYY-MM-DDThh:mm:ss")
+      const startTimeFormatted = this.formatDate(startTime)
       
       const { data } = await axios({
         url: `${this.zoomBaseUrl}/users/${userId}/meetings`,
@@ -96,7 +94,7 @@ export default class ZoomHelper {
     }
   }
 
-  static async getMeeting(meetingId) {
+  async getMeeting(meetingId) {
     try {
       if (!meetingId) throw { msg: "meetingId is required" };
 
@@ -114,6 +112,39 @@ export default class ZoomHelper {
     } catch (err) {
       throw err;
     }
+  }
+
+  async updateMeeting(meetingId, topic, duration, startTime) {
+    try {
+      const token = await this.generateToken();
+      
+      const startTimeFormatted = this.formatDate(startTime)
+
+      const { data } = await axios({
+        url: `${this.zoomBaseUrl}/meetings/${meetingId}`,
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+        },
+        data: {
+          topic,
+          agenda: topic,
+          duration: duration ? duration : 60,
+          start_time: startTimeFormatted,
+          timezone: this.timezone,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  formatDate(startTime) {
+    return dayjs
+              .tz(startTime, this.timezone)
+              .format("YYYY-MM-DDThh:mm:ss")
   }
 
 }

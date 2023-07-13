@@ -70,3 +70,10 @@ const zoomResponse = await zoom.getMeeting("<Meetind-ID>")
 
 console.log(zoomResponse, ">>> response meeting");
 ```
+
+### Update Meeting 
+```js
+const zoomResponse = await zoom.updateMeeting("<Meetind-ID>", "<Topic>", "<Duratoin>", "<Start-Time>",)
+
+console.log(zoomResponse, ">>> response meeting");
+```
