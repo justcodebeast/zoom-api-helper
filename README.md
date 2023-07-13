@@ -63,3 +63,10 @@ const zoomResponse = await zoom.getMeetings(userId)
 
 console.log(zoomResponse, ">>> response list meeting");
 ```
+
+### Get Meeting by ID
+```js
+const zoomResponse = await zoom.getMeeting("<Meetind-ID>")
+
+console.log(zoomResponse, ">>> response meeting");
+```
