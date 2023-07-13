@@ -96,4 +96,24 @@ export default class ZoomHelper {
     }
   }
 
+  static async getMeeting(meetingId) {
+    try {
+      if (!meetingId) throw { msg: "meetingId is required" };
+
+      const token = await this.generateToken();
+
+      const { data } = await axios({
+        method: "GET",
+        url: `${this.zoomBaseUrl}/meetings/${meetingId}`,
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
 }
