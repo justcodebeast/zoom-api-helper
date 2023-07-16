@@ -1,8 +1,10 @@
 {
   "name": "zoom-api-helper",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Zoom API Helper is a Node.js package that provides a helper for simplifies managing meet.",
-  "main": "index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vitest",
     "test": "vitest run",
@@ -16,8 +18,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
   "type": "module",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/tedante/zoom-api-helper/issues"
   },
