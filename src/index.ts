@@ -75,4 +75,94 @@ export class ZoomHelper {
               .format("YYYY-MM-DDThh:mm:ss")
   }
 
+  async getMeeting(meetingId: string) {
+    try {
+      if (!meetingId) throw { msg: "meetingId is required" };
+
+      const token = await this.generateToken();
+
+      const { data } = await axios({
+        method: "GET",
+        url: `${this.zoomBaseUrl}/meetings/${meetingId}`,
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async updateMeeting(meetingId: string, topic: string, duration: number, startTime: string) {
+    try {
+      const token = await this.generateToken();
+
+      const startTimeFormatted = this.formatDate(startTime)
+
+      const { data } = await axios({
+        url: `${this.zoomBaseUrl}/meetings/${meetingId}`,
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+        },
+        data: {
+          topic,
+          agenda: topic,
+          duration,
+          start_time: startTimeFormatted,
+          timezone: this.timezone,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async deleteMeeting(meetingId: string) {
+    try {
+      const token = await this.generateToken();
+
+      const { data } = await axios({
+        url: `${this.zoomBaseUrl}/meetings/${meetingId}`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async getMeetingParticipants(
+    meetingId: string,
+    page_size:number = 300,
+    next_page_token:string = "",
+  ) {
+    try {
+      const token = await this.generateToken();
+
+      const { data } = await axios({
+        url: `${this.zoomBaseUrl}/report/meetings/${meetingId}/participants`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token.access_token}`,
+        },
+        params: {
+          page_size,
+          next_page_token,
+        },
+      });
+
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
