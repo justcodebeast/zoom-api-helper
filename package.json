@@ -4,7 +4,11 @@
   "description": "Zoom API Helper is a Node.js package that provides a helper for simplifies managing meet.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vitest",
+    "test": "vitest run",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc",
+    "ci": "pnpm run lint && pnpm run test && pnpm run build"
   },
   "repository": {
     "type": "git",
@@ -22,5 +26,10 @@
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "dayjs-plugin-utc": "^0.1.2"
+  },
+  "devDependencies": {
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.33.0"
   }
 }
