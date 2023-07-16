@@ -1,6 +1,6 @@
 {
   "name": "zoom-api-helper",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Zoom API Helper is a Node.js package that provides a helper for simplifies managing meet.",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
