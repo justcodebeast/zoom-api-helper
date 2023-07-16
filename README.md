@@ -18,7 +18,7 @@ npm install zoom-api-helper
 
 ### Create Meeting
 ```js
-import ZoomtHelper from "zoom-api-helper";
+import { ZoomtHelper } from "zoom-api-helper";
 
 let zoom = new ZoomtHelper(
   "<Zoom-Account-Id>",
