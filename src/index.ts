@@ -79,21 +79,13 @@ export class ZoomHelper {
     try {
       const token = await this.generateToken();
 
-      const options = { 
-        page_size: params?.page_size || 50, 
-        page_number: params?.page_number || 1,
-        next_page_token: params?.next_page_token ||  "",
-        from: params?.from ||  "",
-        to: params?.to ||  "" 
-      }
-
       const { data } = await axios({
         method: "GET",
         url: `${this.zoomBaseUrl}/users/${userId}/meetings`,
         headers: {
           Authorization: `Bearer ${token.access_token}`,
         },
-        params: options,
+        params
       });
 
       return data;
